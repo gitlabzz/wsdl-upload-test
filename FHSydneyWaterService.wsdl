@@ -1,0 +1,1183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="FHSydneyWaterService" targetNamespace="https://www.fultonhogan.com/SW/2020/v1"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:tns="https://www.fultonhogan.com/SW/2020/v1">
+	<wsdl:documentation>
+		<CreationInfo Created="2020-05-01 11:11:10Z"/>
+	</wsdl:documentation>
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Message"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://schemas.microsoft.com/Message">
+			<xs:complexType name="MessageBody">
+				<xs:sequence>
+					<xs:any minOccurs="0" maxOccurs="unbounded" namespace="##any"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema targetNamespace="https://www.fultonhogan.com/SW/2020/v1/Imports"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="https://www.fultonhogan.com/SW/2020/v1/Imports">
+			<xs:import namespace="https://www.fultonhogan.com/SW/WorkOrderSchedule/2020/v1"/>
+			<xs:import namespace="https://www.fultonhogan.com/SW/PublishWorkLog/2020/v1"/>
+			<xs:import namespace="https://www.fultonhogan.com/SW/CallBack/2020/v1"/>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://www.fultonhogan.com/SW/WorkOrderSchedule/2020/v1"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:b="http://schemas.microsoft.com/BizTalk/2003"
+			xmlns="https://www.fultonhogan.com/SW/WorkOrderSchedule/2020/v1">
+			<xs:element name="WorkOrderforSchedulingRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="WorkOrder">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="WONumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="WorkDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="275"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LongDescription" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="32000"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Location">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="AssetNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="16"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="WorkTypeCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ServiceTypeCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="WorkCategoryCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="AssessedPriorityCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="PriorityJustification" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="500"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="AssetServiceContractNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ServiceDepartmentID">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ReportedDateTime">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ReportedByPersonID">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="62"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ScheduledStartDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ScheduledFinishDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="StartNoEarlierThanDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FinishNoLaterThanDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TargetRespondByDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TargetStartDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TargetFinishDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="StatusDateTime">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ParentWorkorder" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="SequenceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:long"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="JobPlanNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="PreventiveMaintenanceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="8"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="RouteNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="16"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FailedDateTime" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FailureClassCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="SupervisorID" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="AdditionalLocationDetails" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="250"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="UnitNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="StreetNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="StreetName" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="90"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Suburb" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="50"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="NearestCrossStreet" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="60"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LocalGovernmentAreaCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="UBDEdition" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="UBDMapNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="UBDGridReference" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="7"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="PhoneNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ProperytNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="StatutoryWorkFlag" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:boolean"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedDuration" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedLabourCost" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedLabourHours" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedMaterialCost" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedServiceCost" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedToolCost" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="EstimatedTotalCost" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:double"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="NumberOfChildren" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:long"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="CreatedDatetime">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FollowUpWorkFlag" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:boolean"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="PONumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="POLineNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ExternalReferenceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TransactionContextID" minOccurs="0" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Worklogs" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Worklog" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="LogTypeCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="16"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Description">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="500"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LongDescription" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="32000"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="CreatedDateTime">
+													<xs:simpleType>
+														<xs:restriction base="xs:dateTime"/>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Asset">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AssetDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Location">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="LocationDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LocationParent">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LocationType">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Level" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:integer"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FacilityCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LocationWithinFacility" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="120"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Latitude" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Longitude" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="AccessPermitFlag">
+										<xs:simpleType>
+											<xs:restriction base="xs:boolean"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ProductCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Directions" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="125"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LocationHazards" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="LocationHazard" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="HazardID">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="8"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="Description">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="250"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="AreaAffected">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="40"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="Severity">
+																<xs:simpleType>
+																	<xs:restriction base="xs:long"/>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="SpecificGeneralHazardFlag">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="1"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="HazardStatusCode">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="20"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="IdentifiedDateTime">
+																<xs:simpleType>
+																	<xs:restriction base="xs:dateTime"/>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="ControlAction" minOccurs="0">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="255"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="CorrectiveAction" minOccurs="0">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="80"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="CorrectiveActionType">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="8"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="WOHazards" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="WOHazard" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="HazardID">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PlannedLabours" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PlannedLabour" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="CraftCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="SkillLevelCode" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="15"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Contract" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="15"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Vendor" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LabourHours">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Quantity">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LabourRate">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LineCost">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PlannedMaterials" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PlannedMaterial" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="ItemNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Description">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="100"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="DirectIssue">
+													<xs:simpleType>
+														<xs:restriction base="xs:boolean"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="IssueTo" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Quantity">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UnitCost">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LineCost">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="StoreRoom" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="RequestedBy">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="RequiredDate">
+													<xs:simpleType>
+														<xs:restriction base="xs:dateTime"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ReservationTypeCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="16"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Vendor" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UnitOfMeasurement" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PlannedServices" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PlannedService" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Description">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="100"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="IssueTo" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Vendor" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ItemNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Hours">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UnitCost">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Quantity">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LineCost">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UnitOfMeasurement" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="RequestedBy">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="RequiredDate">
+													<xs:simpleType>
+														<xs:restriction base="xs:dateTime"/>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Activities" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Activity" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="ActivityID">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="SequenceNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="TaskNumber">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="Description" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="275"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="MeasurementPointNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="MeasurementPointDescription" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="100"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="DomainID" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="18"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UnitOfMeasurement" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="LowerWarning" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="UpperWarning" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Attachments" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Attachment" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="DocumentTransferred">
+													<xs:simpleType>
+														<xs:restriction base="xs:boolean"/>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="DocumentName">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="254"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="DocumentDescription">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="254"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="DocumentLocation">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="250"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WorkOrderforSchedulingResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StatusCode" type="xs:string"/>
+						<xs:element name="StatusDescription" type="xs:string"/>
+						<xs:element name="ReceivedOn" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://www.fultonhogan.com/SW/PublishWorkLog/2020/v1"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:b="http://schemas.microsoft.com/BizTalk/2003"
+			xmlns="https://www.fultonhogan.com/SW/PublishWorkLog/2020/v1">
+			<xs:element name="PublishWorkLogRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PublishWorkLog">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="WONumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="CreatedDatetime">
+										<xs:simpleType>
+											<xs:restriction base="xs:dateTime"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="LogType">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="16"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Description">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="500"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element minOccurs="0" name="LongDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="32000"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TransactionContextID" minOccurs="0" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PublishWorkLogResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StatusCode" type="xs:string"/>
+						<xs:element name="StatusDescription" type="xs:string"/>
+						<xs:element name="ReceivedOn" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://www.fultonhogan.com/SW/CallBack/2020/v1"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:b="http://schemas.microsoft.com/BizTalk/2003"
+			xmlns="https://www.fultonhogan.com/SW/CallBack/2020/v1">
+			<xs:element name="CallBackRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionInformation">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ServiceName" type="xs:string"/>
+									<xs:element name="OperationName" type="xs:string"/>
+									<xs:element name="ServiceVersion" type="xs:string"/>
+									<xs:element name="TransactionContextID" type="xs:string"/>
+									<xs:element name="ApplicationID" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="BusinessContexts">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessContext">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Name" type="xs:string"/>
+												<xs:element name="Value" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="OperationResponse">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="OperationStatus" type="xs:string"/>
+									<xs:element name="OperationDescription" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CallBackResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StatusCode" type="xs:string"/>
+						<xs:element name="StatusDescription" type="xs:string"/>
+						<xs:element name="ReceivedOn" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="FHSydneyWaterService_PostWorkOrderforScheduling_InputMessage">
+		<wsdl:part name="part" element="q1:WorkOrderforSchedulingRequest"
+			xmlns:q1="https://www.fultonhogan.com/SW/WorkOrderSchedule/2020/v1"/>
+		</wsdl:message>
+		<wsdl:message name="FHSydneyWaterService_PostWorkOrderforScheduling_OutputMessage">
+			<wsdl:part name="part" element="q2:WorkOrderforSchedulingResponse"
+				xmlns:q2="https://www.fultonhogan.com/SW/WorkOrderSchedule/2020/v1"/>
+			</wsdl:message>
+			<wsdl:message name="FHSydneyWaterService_PostWorkLog_InputMessage">
+				<wsdl:part name="part" element="q3:PublishWorkLogRequest"
+					xmlns:q3="https://www.fultonhogan.com/SW/PublishWorkLog/2020/v1"/>
+				</wsdl:message>
+				<wsdl:message name="FHSydneyWaterService_PostWorkLog_OutputMessage">
+					<wsdl:part name="part" element="q4:PublishWorkLogResponse"
+						xmlns:q4="https://www.fultonhogan.com/SW/PublishWorkLog/2020/v1"/>
+					</wsdl:message>
+					<wsdl:message name="FHSydneyWaterService_PostCallBack_InputMessage">
+						<wsdl:part name="part" element="q5:CallBackRequest"
+							xmlns:q5="https://www.fultonhogan.com/SW/CallBack/2020/v1"/>
+						</wsdl:message>
+						<wsdl:message name="FHSydneyWaterService_PostCallBack_OutputMessage">
+							<wsdl:part name="part" element="q6:CallBackResponse"
+								xmlns:q6="https://www.fultonhogan.com/SW/CallBack/2020/v1"/>
+							</wsdl:message>
+							<wsdl:portType name="FHSydneyWaterServicePortType">
+								<wsdl:documentation/>
+								<wsdl:operation name="PostWorkOrderforScheduling">
+									<wsdl:documentation/>
+									<wsdl:input message="tns:FHSydneyWaterService_PostWorkOrderforScheduling_InputMessage"/>
+									<wsdl:output message="tns:FHSydneyWaterService_PostWorkOrderforScheduling_OutputMessage"/>
+								</wsdl:operation>
+								<wsdl:operation name="PostWorkLog">
+									<wsdl:documentation/>
+									<wsdl:input message="tns:FHSydneyWaterService_PostWorkLog_InputMessage"/>
+									<wsdl:output message="tns:FHSydneyWaterService_PostWorkLog_OutputMessage"/>
+								</wsdl:operation>
+								<wsdl:operation name="PostCallBack">
+									<wsdl:documentation/>
+									<wsdl:input message="tns:FHSydneyWaterService_PostCallBack_InputMessage"/>
+									<wsdl:output message="tns:FHSydneyWaterService_PostCallBack_OutputMessage"/>
+								</wsdl:operation>
+							</wsdl:portType>
+							<wsdl:binding name="FHSydneyWaterServiceBinding" type="tns:FHSydneyWaterServicePortType">
+								<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+								<wsdl:operation name="PostWorkOrderforScheduling">
+									<wsdl:documentation/>
+									<soap:operation soapAction="PostWorkOrderforScheduling" style="document"/>
+									<wsdl:input>
+										<soap:body use="literal"/>
+									</wsdl:input>
+									<wsdl:output>
+										<soap:body use="literal"/>
+									</wsdl:output>
+								</wsdl:operation>
+								<wsdl:operation name="PostWorkLog">
+									<wsdl:documentation/>
+									<soap:operation soapAction="PostWorkLog" style="document"/>
+									<wsdl:input>
+										<soap:body use="literal"/>
+									</wsdl:input>
+									<wsdl:output>
+										<soap:body use="literal"/>
+									</wsdl:output>
+								</wsdl:operation>
+								<wsdl:operation name="PostCallBack">
+									<wsdl:documentation/>
+									<soap:operation soapAction="PostCallBack" style="document"/>
+									<wsdl:input>
+										<soap:body use="literal"/>
+									</wsdl:input>
+									<wsdl:output>
+										<soap:body use="literal"/>
+									</wsdl:output>
+								</wsdl:operation>
+							</wsdl:binding>
+							<wsdl:service name="FHSydneyWaterService">
+								<wsdl:port name="FHSydneyWaterService" binding="tns:FHSydneyWaterServiceBinding">
+									<soap:address location="https://fultonhogan-dev.azure-api.net/sydneywaters/v1"/>
+								</wsdl:port>
+							</wsdl:service>
+						</wsdl:definitions>
